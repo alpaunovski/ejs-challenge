@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
@@ -32,9 +32,19 @@ app.get("/contact", function(req, res) {
     res.render("contact", { contactText: contactContent })
 });
 
+app.get("/compose", function(req, res) {
+    res.render("compose");
+});
 
+app.post("/compose", function(req, res) {
+    res.redirect("/compose");
+    let postTitle = req.body.newPostTitle;
+    let postText = req.body.newPost;
 
+    console.log(postText);
+    console.log(postTitle);
 
+});
 
 
 
