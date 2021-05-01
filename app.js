@@ -11,6 +11,8 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 const app = express();
 const path = require('path');
 
+var posts = [];
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -38,11 +40,18 @@ app.get("/compose", function(req, res) {
 
 app.post("/compose", function(req, res) {
     res.redirect("/compose");
-    let postTitle = req.body.newPostTitle;
-    let postText = req.body.newPost;
+    let postTitle = req.body.postTitle;
+    let postBody = req.body.postBody;
 
-    console.log(postText);
-    console.log(postTitle);
+    let post = {
+        postTitle: postTitle,
+        postBody: postBody,
+    }
+
+    posts.push(post);
+
+    console.log(posts);
+
 
 });
 
