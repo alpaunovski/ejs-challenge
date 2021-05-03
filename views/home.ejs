@@ -11,7 +11,9 @@
                 <%= post.postTitle %>
             </h1>
             <p>
-                <%= post.postBody %>
+                <%= _.truncate(post.postBody, {
+                    "length": 100
+                }) %>
             </p>
         </div>
 
