@@ -10,6 +10,7 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 const app = express();
 const path = require('path');
+const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
 
 var posts = [];
 
@@ -21,8 +22,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
-    res.render("home", { startingContent: homeStartingContent });
 
+    let postsString = [];
+
+    for (i = 0; i < posts.length; i++) {
+        postsString.push(posts[i].postTitle);
+    }
+    res.render("home", { startingContent: postsString, posts: posts });
+    // console.log(posts);
 
 });
 
@@ -50,7 +57,7 @@ app.post("/compose", function(req, res) {
 
     posts.push(post);
 
-    console.log(posts);
+
 
 
 });

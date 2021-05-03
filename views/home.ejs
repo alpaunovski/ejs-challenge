@@ -1,8 +1,21 @@
 <%- include partials/header.ejs %>
 
     <h1>Home</h1>
+    <% 
+        posts.forEach(function(post) {
+            
+        %>
 
-    <%= startingContent %>
+        <div>
+            <h1>
+                <%= post.postTitle %>
+            </h1>
+            <p>
+                <%= post.postBody %>
+            </p>
+        </div>
+
+        <% }); %>
 
 
-        <%- include partials/footer.ejs %>
+            <%- include partials/footer.ejs %>
